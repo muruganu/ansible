@@ -1,0 +1,12 @@
+--- #Template testing
+- hosts: appserver:webserver
+  connection: ssh
+  user: ansible
+  sudo: yes
+  gather_facts: yes
+  vars:
+    Username: ansible
+    Password: ansible123
+  tasks:
+    - name: install configuration
+      template: src=test.conf.j2 dest=/home/ansible owner=ansible

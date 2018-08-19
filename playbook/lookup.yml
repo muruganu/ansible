@@ -1,0 +1,10 @@
+--- # Lookup function validate
+- hosts: appserver
+  connection: ssh
+  user: ansible
+  sudo: yes
+  gather_facts: no
+  vars:
+    - content: "{{ lookup('file','csvfile.csv') }}"
+  tasks:
+    - debug: msg="the value of content is {{ content }}"

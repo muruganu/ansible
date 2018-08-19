@@ -1,0 +1,15 @@
+--- #User Creation Playbook Module
+- hosts: all
+  connection: ssh
+  user: ansible
+  sudo: yes
+  gather_facts: no
+  vars:
+    author: murugan
+  vars_files:
+    - conf/user.yml
+  tasks:
+    - name: create an user
+      user: 
+        name: "{{ username }}"
+        state: present

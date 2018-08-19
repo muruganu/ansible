@@ -1,0 +1,13 @@
+--- #example for handlers
+- hosts: appserver
+  connection: ssh
+  user: ansible
+  sudo: yes
+  gather_facts: no
+  tasks:
+    - name: install httpd
+      yum: name=httpd state=latest
+      notify: restart HTTPD
+  handlers: 
+    - name: restart HTTPD
+      service: name=httpd state=restarted

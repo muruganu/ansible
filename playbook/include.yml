@@ -1,0 +1,12 @@
+--- # Instlal package using include
+- hosts: webserver
+  connection: ssh
+  user: ansible
+  sudo: yes
+  gather_facts: no
+  tasks:
+    - include: play/packages.yml
+    - name: verify installation
+      raw: yum list telnet
+      register: result
+    - debug: var=result

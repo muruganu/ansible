@@ -1,0 +1,12 @@
+--- # RUN once example playbook
+- hosts: all
+  connection: ssh
+  user: ansible
+  sudo: yes
+  gather_facts: no
+  tasks:
+    - name: capture uptime for hosts
+      raw: uptime >> /home/ansible/uptime.log
+    - name: Run only one host
+      raw: ls /var >> /home/ansible/list.log
+      run_once: true

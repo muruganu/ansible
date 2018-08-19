@@ -1,0 +1,13 @@
+--- #Include directory structure
+- hosts: webserver
+  connection: ssh
+  user: ansible
+  sudo: yes
+  vars_files:
+    - include: variables/variables.yml
+      ignore_errors: yes
+  tasks:
+    - include: packages/packages.yml
+    - include: commands/commands.yml
+  handlers:
+    - include: handlers/handlers.yml

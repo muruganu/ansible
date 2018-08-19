@@ -1,0 +1,9 @@
+--- #Package installation
+    - hosts: appserver
+      vars:
+        author_name: Murugan
+      vars_files: 
+        - vars.yaml
+      tasks:
+       - name: package installation
+         yum: pkg=httpd state=installed update_cache=true

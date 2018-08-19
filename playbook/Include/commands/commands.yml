@@ -1,0 +1,2 @@
+- name: command to verify the installed packages
+  raw: yum list installed | grep telnet > /home/ansible/installed.log

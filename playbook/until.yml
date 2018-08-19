@@ -1,0 +1,16 @@
+--- #until to run the sucess
+- hosts: appserver
+  connection: ssh
+  user: ansible
+  sudo: yes
+  gather_facts: no
+  tasks:
+    - name: install httpd
+      yum: pkg=httpd state=latest
+    - name: restart the service
+      shell: systemctl status httpd
+      register: result
+      until: result.stdout.find("active (running)") != -1
+      retries: 3
+      delay: 2
+    - debug: var=result

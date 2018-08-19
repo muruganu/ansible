@@ -1,0 +1,5 @@
+- name: Install httpd
+  yum: pkg=httpd state=installed
+  notify: HTTPD restart
+- name: Install Telnet
+  yum pkg=telnet state=installed

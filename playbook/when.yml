@@ -1,0 +1,9 @@
+--- # Conditional example
+- hosts: appserver
+  connection: ssh
+  user: ansible
+  sudo: yes
+  tasks:
+    - name: Install httpd
+      command: yum -y install httpd
+      when: ansible_os_family == 'RedHat' 

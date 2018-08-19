@@ -1,0 +1,25 @@
+--- #Outline Playbook Transition
+- hosts: webserver
+  connection: ssh
+  user: ansible
+  sudo: yes
+  gather_facts: no
+  tasks:
+   - name: data/time stamp when play book start
+     raw: /bin/date > /home/ansible/playbookstart.log
+   - name: install the apache web server
+     yum: pkg=httpd state=latest
+   - name: start web service
+     service: name=httpd state=restarted
+   - name: verify that the webservice is running
+     command: systemctl status httpd
+     register: result
+   - debug: var=result
+   - name: install client software
+     yum: pkg=telnet state=latest
+   - name : log all the packages install on the system
+     raw: yum list installed > /home/ansible/packageinstalled.log
+   - name : date/time stamp for when the playbook ends
+     raw: /bin/date > /home/ansible/playbookend.log
+
+

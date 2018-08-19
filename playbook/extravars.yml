@@ -1,0 +1,9 @@
+--- #Passing variable value from command line
+- hosts: "{{ hosts }}"
+  connection: ssh
+  user: "{{ user }}"
+  sudo: yes
+  tasks:
+    - name: Install httpd
+      yum: pkg="{{ package }}" state=installed
+    - debug: var=hosts

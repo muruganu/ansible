@@ -1,0 +1,22 @@
+--- #User Creation Playbook Module
+- hosts: all
+  connection: ssh
+  user: ansible
+  sudo: yes
+  gather_facts: no
+  vars:
+    author: murugan
+  vars_files:
+    - conf/user.yml
+  vars_prompt:
+    - name: comment
+      prompt: enter comment
+    - name: newusername
+      prompt: newusername
+    - name: groupname
+      prompt: groupname
+  tasks:
+    - name: create an user
+      user: 
+        name: "{{ newusername }}"
+        state: absent

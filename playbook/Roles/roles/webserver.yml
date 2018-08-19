@@ -1,0 +1,13 @@
+--- #Master webserver playbook
+- hosts: webserver
+  connection: ssh
+  user: ansible
+  sudo: yes
+  pre_tasks:
+    - name: Capture start time
+      raw: date > /home/ansible/start.log
+  roles:
+    - webserver
+  post_tasks: 
+    - name: Capture end time
+      raw: date > /home/ansible/end.log

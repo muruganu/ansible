@@ -1,0 +1,25 @@
+--- #My first Playbook
+- hosts: all
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  vars:
+    playbook_version: 0.1b
+  vars_files:
+    - conf/copyright.yml
+    - conf/webdefaults.yml
+  vars_prompt:
+    - name: web_domain
+      prompt: Web Domain
+    - name: package_name
+      prompt: enter pkgname
+  tasks:
+    - name: Install httpd web brower
+      yum: name=httpd state=installed
+      notify: Restart HTTPD
+    - name: Install telnet
+      yum: name={{ package_name }} state=installed
+  handlers:
+    - name: Restart HTTPD
+      action: service name=httpd state=restarted
